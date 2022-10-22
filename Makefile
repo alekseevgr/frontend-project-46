@@ -5,4 +5,4 @@ lint:
 publish:
 	npm publish --dry-run
 gendiff:
-	node gendiff.js -h	
+	node bin/gendiff.js -h	
