@@ -54,9 +54,9 @@ const getDiff = (getDiffInfo) => {
     });
     return `{\n${result.join('\n')}\n}`;
 }
-const getAbsPath = (filePath) => path.resolve(process.cwd(), 'files', filePath)
+const getAbsPath = (filePath) => path.resolve(process.cwd(), filePath)
 const readFile = (filePath) => readFileSync(getAbsPath(filePath), { encoding: 'utf8' })
-const getObject = JSON.parse(readFile(filePath));
+const getObject = (filePath) => JSON.parse(readFile(filePath));
 
 
 const genDiff = (filePath1, filePath2) => {
