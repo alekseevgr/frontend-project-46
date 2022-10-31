@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/alekseevgr/frontend-project-46#readme",
   "dependencies": {
-    "commander": "^9.4.0"
+    "commander": "^9.4.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "eslint": "^8.26.0"
   }
 }
