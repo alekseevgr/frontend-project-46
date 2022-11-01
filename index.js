@@ -65,4 +65,4 @@ const genDiff = (filePath1, filePath2) => {
     return getDiff(getDiffInfo(file1, file2))
 }
 
-export default genDiff
+export default genDiff;
