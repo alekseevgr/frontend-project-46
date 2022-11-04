@@ -1,3 +1,5 @@
-test('adds 1 + 2 to equal 3', () => {
-    expect(Math.sqrt(9)).toEqual(4);
+import genDiff from "../src/index";
+
+test('gendiff', () => {
+  expect(genDiff(filepath1, filepath2)).toEqual(expected);
   });
