@@ -12,11 +12,17 @@ const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8'
 
 const tests = [
   {
-    file1: 'file1.json', file2: 'file2.json', output: 'test1.json',
+    file1: 'file1.json', file2: 'file2.json', output: 'test1.txt',
+  },
+  {
+    file1: 'file1.yml', file2: 'file2.yaml', output: 'test1.txt'
+  },
+  {
+    file1: 'file3.json', file2: 'file4.json', output: 'testTreeJson.txt'
   }
 ];
 
-test.each(tests)('gendiff test', ({
+test.each(tests)('json yaml test', ({
   file1, file2, output
 }) => {
   const filepath1 = getFixturePath(file1);
