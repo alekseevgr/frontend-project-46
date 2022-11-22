@@ -5,7 +5,7 @@ const getDiffInfo = (file1, file2) => {
     const keys2 = _.keys(file2)
     const sortKeys = _.sortBy(_.union(keys1, keys2))
     const getInfo = sortKeys.map((key) => {
-        if (_.isObject(file1) && _.isObject(file2)){
+        if (_.isObject(file1[key]) && _.isObject(file2[key])){
           return {
             type: 'nested',
             name: key,
