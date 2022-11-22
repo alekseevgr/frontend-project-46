@@ -7,7 +7,6 @@ const getValue = (node, depth = 1) => {
   }
   const bracketIndent = makeIndent(depth - 1);
   const lines  = Object.entries(node).map(([key, value]) => `${makeIndent(depth)}${key}: ${getValue(value, depth + 1)}`);
-
   return [
     '{',
     ...lines,
@@ -17,7 +16,7 @@ const getValue = (node, depth = 1) => {
 }
 
 const stylish = (getDiffInfo, depth = 1) => {
-    const indent = makeIndent(depth).slice(0, makeIndent(depth) - 2)
+    const indent = makeIndent(depth);
     const result = getDiffInfo.flatMap((diff) => {
         const typediff = diff.type;
         switch (typediff) {
@@ -31,8 +30,8 @@ const stylish = (getDiffInfo, depth = 1) => {
                 return `${indent}  ${diff.name}: ${getValue(diff.value, depth + 1)}`;
             case 'changed':
                 return [
-                  `${indent} -  ${diff.name}: ${getValue(diff.value1, depth + 1)}`, 
-                  `${indent} +  ${diff.name}: ${getValue(diff.value2, depth + 1)}`
+                  `${indent}- ${diff.name}: ${getValue(diff.value1, depth + 1)}`, 
+                  `${indent}+ ${diff.name}: ${getValue(diff.value2, depth + 1)}`
                 ];
             default:
                 return null;
