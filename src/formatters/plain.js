@@ -9,14 +9,18 @@ const format = (value) => {
     }
     return value;
   };
-const plain = (diff) => {
+const plain = (diff, fileName = []) => {
     const {
         type, children, name, value, value1, value2
     } = diff
-        const fileName = [];
         const nestedKeys = [...fileName, name]
         const namePath = nestedKeys.join('.')
         switch (type) {
+            case 'root':
+                const tree = children
+                .filter((child) => child.type !=='unchanged')
+                .flatMap((child) => plain(child, []));
+                return tree.join('\n')
             case 'nested':
                 const result = children
                 .filter((child) => child.type !== 'unchanged')

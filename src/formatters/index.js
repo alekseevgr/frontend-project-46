@@ -8,7 +8,7 @@ const getFormat = (data, format) => {
         case 'plain':
             return plain(data);
         case 'json':
-            return JSON.stringify(data, ' ', 2);
+            return JSON.stringify(data);
         default:
             return null
     }

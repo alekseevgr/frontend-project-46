@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 const makeIndent = (depth, replacer = ' ', spacesCount = 4) => replacer.repeat(depth * spacesCount - 2)
 const getValue = (node, depth = 1) => {
-  if (!_.isObject(node) || node === null){
+  if (!_.isObject(node)){
     return node;
   }
   const bracketIndent = makeIndent(depth - 1);
@@ -15,29 +15,34 @@ const getValue = (node, depth = 1) => {
 
 }
 
-const stylish = (getDiffInfo, depth = 1) => {
+const stylish = (tree, depth = 1) => {
+  const {
+    root, name, value, type, value1, value2, children,
+  } = tree
     const indent = makeIndent(depth);
-    const result = getDiffInfo.flatMap((diff) => {
-        const typediff = diff.type;
-        switch (typediff) {
-            case 'nested':
-                return `${indent}  ${diff.name}: ${stylish(diff.children, depth + 1)}`
+        switch (type) {
+            case 'root': {
+                const result = children.flatMap((child) => stylish(child, depth));
+                return `{\n${result.join('\n')}\n}`
+            };
+            case 'nested': {
+                const result = children.flatMap((child) => stylish(child, depth + 1));
+                return `${indent}  ${name}: {\n${result.join('\n')}\n${indent}}`
+            };
             case 'deleted':
-                return `${indent}- ${diff.name}: ${getValue(diff.value, depth + 1)}`;
+                return `${indent}- ${name}: ${getValue(value, depth)}`;
             case 'added':
-                return `${indent}+ ${diff.name}: ${getValue(diff.value, depth + 1)}`;
+                return `${indent}+ ${name}: ${getValue(value, depth)}`;
             case 'unchanged':
-                return `${indent}  ${diff.name}: ${getValue(diff.value, depth + 1)}`;
+                return `${indent}  ${name}: ${getValue(value, depth)}`;
             case 'changed':
                 return [
-                  `${indent}- ${diff.name}: ${getValue(diff.value1, depth + 1)}`, 
-                  `${indent}+ ${diff.name}: ${getValue(diff.value2, depth + 1)}`
+                  `${indent}- ${name}: ${getValue(value1, depth)}`, 
+                  `${indent}+ ${name}: ${getValue(value2, depth)}`
                 ];
             default:
                 return null;
         }
-    });
-return `{\n${result.join('\n')}\n}`;
 };
 
 export default stylish;

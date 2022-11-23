@@ -43,5 +43,5 @@ const getDiffInfo = (file1, file2) => {
       return getInfo;
     }
 
-
-export default getDiffInfo
+const rootTree = (file1, file2) => ({type: 'root', children: getDiffInfo(file1, file2)})
+export default rootTree
