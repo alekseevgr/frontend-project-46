@@ -17,18 +17,18 @@ const getValue = (node, depth = 1) => {
 
 const stylish = (tree, depth = 1) => {
   const {
-    root, name, value, type, value1, value2, children,
+  name, value, type, value1, value2, children,
   } = tree
     const indent = makeIndent(depth);
         switch (type) {
             case 'root': {
                 const result = children.flatMap((child) => stylish(child, depth));
                 return `{\n${result.join('\n')}\n}`
-            };
+            }
             case 'nested': {
                 const result = children.flatMap((child) => stylish(child, depth + 1));
                 return `${indent}  ${name}: {\n${result.join('\n')}\n${indent}}`
-            };
+            }
             case 'deleted':
                 return `${indent}- ${name}: ${getValue(value, depth)}`;
             case 'added':

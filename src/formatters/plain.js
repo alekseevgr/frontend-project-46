@@ -16,16 +16,18 @@ const plain = (diff, fileName = []) => {
         const nestedKeys = [...fileName, name]
         const namePath = nestedKeys.join('.')
         switch (type) {
-            case 'root':
+            case 'root': {
                 const tree = children
                 .filter((child) => child.type !=='unchanged')
                 .flatMap((child) => plain(child, []));
-                return tree.join('\n')
-            case 'nested':
+                return tree.join('\n');
+            }
+            case 'nested': {
                 const result = children
                 .filter((child) => child.type !== 'unchanged')
                 .flatMap((child) => plain(child, nestedKeys));
-                return result.join('\n')
+                return result.join('\n');
+            }
             case 'deleted':
                 return `Property '${namePath}' was removed`;
             case 'added':
