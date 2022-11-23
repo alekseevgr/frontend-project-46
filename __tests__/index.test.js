@@ -12,22 +12,26 @@ const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8'
 
 const tests = [
   {
-    file1: 'file1.json', file2: 'file2.json', output: 'test1.txt',
+    file1: 'file1.json', file2: 'file2.json', formatter: 'stylish', output: 'test1.txt',
   },
   {
-    file1: 'file1.yml', file2: 'file2.yaml', output: 'test1.txt'
+    file1: 'file1.json', file2: 'file2.json', formatter: 'plain', output: 'plainTest.txt',
   },
   {
-    file1: 'file3.json', file2: 'file4.json', output: 'testTreeJson.txt'
+    file1: 'file1.yml', file2: 'file2.yaml', formatter: 'stylish', output: 'test1.txt'
+  },
+
+  {
+    file1: 'file3.json', file2: 'file4.json', formatter: 'stylish', output: 'testTreeJson.txt'
   }
 ];
 
-test.each(tests)('json yaml test', ({
-  file1, file2, output
+test.each(tests)('stylish test', ({
+  file1, file2, formatter, output
 }) => {
   const filepath1 = getFixturePath(file1);
   const filepath2 = getFixturePath(file2);
   const expected = readFile(output);
-  const result = genDiff(filepath1, filepath2);
+  const result = genDiff(filepath1, filepath2, formatter);
   expect(result).toEqual(expected);
 });
