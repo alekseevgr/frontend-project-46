@@ -35,7 +35,7 @@ const plain = (diff, fileName = []) => {
             case 'changed':
                 return `Property '${namePath}' was updated. From ${format(value1)} to ${format(value2)}`
             default:
-                return null;
+                throw new Error(`Unknown type!`);;
         }
 };
 
