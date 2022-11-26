@@ -8,6 +8,10 @@
 
 **Вычислитель отличий** это программа, которая показывает различия между двумя файлами. Поддерживаемые форматы файлов: JSON, YML, YAML.
 
+## Requirements
+
+Installed Node.js version 13 and above
+
 ## Setup
 
 clone the repository or use 
@@ -23,4 +27,18 @@ clone the repository or use
 
 ```bash
 make test
+```
+
+## How to use
+
+```bash
+node bin/gendiff.js -h
+Usage: gendiff [options] <filepath1> <filepath2>
+
+Compares two configuration files and shows a difference.
+
+Options:
+  -V, --version        output the version number
+  -f, --format <type>  output format (default: "stylish")
+  -h, --help           display help for command
 ```
