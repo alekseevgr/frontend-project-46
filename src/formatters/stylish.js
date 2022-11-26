@@ -22,7 +22,7 @@ const stylish = (tree, depth = 1) => {
     const indent = makeIndent(depth);
         switch (type) {
             case 'root': {
-                const result = children.flatMap((child) => stylish(child, depth));
+                const result = children.flatMap((child) => stylish(child, depth + 1));
                 return `{\n${result.join('\n')}\n}`
             }
             case 'nested': {
