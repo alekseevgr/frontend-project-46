@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-const format = (value) => {
+const stringify = (value) => {
     if (_.isObject(value)) {
         return '[complex value]';
     }
@@ -31,9 +31,9 @@ const plain = (diff, fileName = []) => {
             case 'deleted':
                 return `Property '${namePath}' was removed`;
             case 'added':
-                return `Property '${namePath}' was added with value: ${format(value)}`;
+                return `Property '${namePath}' was added with value: ${stringify(value)}`;
             case 'changed':
-                return `Property '${namePath}' was updated. From ${format(value1)} to ${format(value2)}`
+                return `Property '${namePath}' was updated. From ${stringify(value1)} to ${stringify(value2)}`
             default:
                 throw new Error(`Unknown type!`);;
         }

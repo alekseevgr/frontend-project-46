@@ -1,16 +1,16 @@
 import { load } from "js-yaml";
 
-const getParser = (file, format) => {
+const parse = (data, format) => {
     switch (format) {
       case 'json':
-        return JSON.parse(file);
+        return JSON.parse(data);
       case 'yaml':
-        return load(file);
+        return load(data);
       case 'yml':
-        return load(file);
+        return load(data);
       default:
-        return 'error'
+        throw new Error(`Unknown type!`);
     }
   }
 
-export default getParser
+export default parse

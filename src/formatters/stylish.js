@@ -1,12 +1,12 @@
 import _ from 'lodash';
 
 const makeIndent = (depth, replacer = ' ', spacesCount = 4) => replacer.repeat(depth * spacesCount - 2)
-const getValue = (node, depth = 1) => {
+const stringify = (node, depth = 1) => {
   if (!_.isObject(node)){
     return node;
   }
   const bracketIndent = makeIndent(depth - 1);
-  const lines  = Object.entries(node).map(([key, value]) => `${makeIndent(depth)}${key}: ${getValue(value, depth + 1)}`);
+  const lines  = Object.entries(node).map(([key, value]) => `${makeIndent(depth)}${key}: ${stringify(value, depth + 1)}`);
   return [
     '{',
     ...lines,
@@ -22,7 +22,7 @@ const stylish = (tree, depth = 1) => {
     const indent = makeIndent(depth);
         switch (type) {
             case 'root': {
-                const result = children.flatMap((child) => stylish(child, depth + 1));
+                const result = children.flatMap((child) => stylish(child, depth));
                 return `{\n${result.join('\n')}\n}`
             }
             case 'nested': {
@@ -30,15 +30,15 @@ const stylish = (tree, depth = 1) => {
                 return `${indent}  ${name}: {\n${result.join('\n')}\n${indent}}`
             }
             case 'deleted':
-                return `${indent}- ${name}: ${getValue(value, depth)}`;
+                return `${indent}- ${name}: ${stringify(value, depth)}`;
             case 'added':
-                return `${indent}+ ${name}: ${getValue(value, depth)}`;
+                return `${indent}+ ${name}: ${stringify(value, depth)}`;
             case 'unchanged':
-                return `${indent}  ${name}: ${getValue(value, depth)}`;
+                return `${indent}  ${name}: ${stringify(value, depth)}`;
             case 'changed':
                 return [
-                  `${indent}- ${name}: ${getValue(value1, depth)}`, 
-                  `${indent}+ ${name}: ${getValue(value2, depth)}`
+                  `${indent}- ${name}: ${stringify(value1, depth)}`, 
+                  `${indent}+ ${name}: ${stringify(value2, depth)}`
                 ];
             default:
                 throw new Error(`Unknown type!`);
