@@ -9,7 +9,7 @@ const parse = (data, format) => {
       case 'yml':
         return load(data);
       default:
-        throw new Error(`Unknown type!`);
+        throw new Error(`Unknown format: ${format}! Check supported formats`);
     }
   }
 

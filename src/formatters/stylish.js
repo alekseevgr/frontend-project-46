@@ -15,18 +15,19 @@ const stringify = (node, depth = 1) => {
 
 }
 
-const stylish = (tree, depth = 1) => {
+const stylish = (data) => {
+  const iter = (innerData, depth) => {
   const {
   name, value, type, value1, value2, children,
-  } = tree
+  } = innerData
     const indent = makeIndent(depth);
         switch (type) {
             case 'root': {
-                const result = children.flatMap((child) => stylish(child, depth));
+                const result = children.flatMap((child) => iter(child, depth + 1));
                 return `{\n${result.join('\n')}\n}`
             }
             case 'nested': {
-                const result = children.flatMap((child) => stylish(child, depth + 1));
+                const result = children.flatMap((child) => iter(child, depth + 1));
                 return `${indent}  ${name}: {\n${result.join('\n')}\n${indent}}`
             }
             case 'deleted':
@@ -43,6 +44,9 @@ const stylish = (tree, depth = 1) => {
             default:
                 throw new Error(`Unknown type!`);
         }
+    
+      }
+    return iter(data, 1)
 };
 
 export default stylish;

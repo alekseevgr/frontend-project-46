@@ -13,6 +13,7 @@ const plain = (diff, fileName = []) => {
     const {
         type, children, name, value, value1, value2
     } = diff
+
         const nestedKeys = [...fileName, name]
         const namePath = nestedKeys.join('.')
         switch (type) {

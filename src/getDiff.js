@@ -4,7 +4,7 @@ const buildTree = (data1, data2) => {
     const keys1 = _.keys(data1)
     const keys2 = _.keys(data2)
     const sortKeys = _.sortBy(_.union(keys1, keys2))
-    const getInfo = sortKeys.map((key) => {
+    return sortKeys.map((key) => {
         if (_.isObject(data1[key]) && _.isObject(data2[key])){
           return {
             type: 'nested',
@@ -40,7 +40,6 @@ const buildTree = (data1, data2) => {
           value: data1[key],
         };
       });
-      return getInfo;
     }
 
 export default (data1, data2) => ({type: 'root', children: buildTree(data1, data2)})

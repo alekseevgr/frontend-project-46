@@ -10,7 +10,7 @@ const format = (data, formatName) => {
         case 'json':
             return JSON.stringify(data);
         default:
-            return null
+            throw new Error(`Unknown formatName: ${formatName}! Check supported formats`);
     }
 }
 
