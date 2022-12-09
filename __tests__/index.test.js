@@ -14,17 +14,9 @@ const correctStylish = readFile('stylishResult.txt')
 const correctPlain = readFile('plainResult.txt')
 const correctJson = readFile('jsonResult.json')
 
-test('json tests', () => {
-  const filepath1 = getFixturePath('file1.json');
-  const filepath2 = getFixturePath('file2.json');
-  expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(correctStylish);
-  expect(genDiff(filepath1, filepath2, 'plain')).toEqual(correctPlain);
-  expect(genDiff(filepath1, filepath2, 'json')).toEqual(correctJson);
-  expect(genDiff(filepath1, filepath2)).toEqual(correctStylish);
-})
-test('yml tests', () => {
-  const filepath1 = getFixturePath('file1.yml');
-  const filepath2 = getFixturePath('file2.yml');
+test.each(['json', 'yml'])('gendiff %s', (format) => {
+  const filepath1 = getFixturePath(`file1.${format}`);
+  const filepath2 = getFixturePath(`file1.${format}`);
   expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(correctStylish);
   expect(genDiff(filepath1, filepath2, 'plain')).toEqual(correctPlain);
   expect(genDiff(filepath1, filepath2, 'json')).toEqual(correctJson);
