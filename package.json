@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "type": "module",
-  "description": "[![Actions Status](https://github.com/alekseevgr/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/alekseevgr/frontend-project-46/actions)",
+  "description": "The difference calculator is a program that shows the differences between two files. Supported file formats: JSON, YML, YAML.",
   "main": "./src/index.js",
   "scripts": {
     "test": "npx jest"

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const makeIndent = (depth, replacer = ' ', spacesCount = 2) => replacer.repeat(depth * spacesCount)
+const makeIndent = (depth, replacer = ' ', spacesCount = 2) => replacer.repeat(depth * spacesCount - 2)
 const stringify = (node, depth = 1) => {
   if (!_.isObject(node)){
     return node;
@@ -46,7 +46,7 @@ const stylish = (data) => {
         }
     
       }
-    return iter(data, 0)
+    return iter(data, 1)
 };
 
 export default stylish;
