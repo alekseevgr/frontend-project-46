@@ -1,11 +1,11 @@
 import _ from 'lodash';
 
-const makeIndent = (depth, replacer = ' ', spacesCount = 2) => replacer.repeat(depth * spacesCount - 2)
+const makeIndent = (depth, replacer = ' ', spacesCount = 4) => replacer.repeat(depth * spacesCount - 2)
 const stringify = (node, depth = 1) => {
   if (!_.isObject(node)){
     return node;
   }
-  const bracketIndent = makeIndent(depth);
+  const bracketIndent = makeIndent(depth - 1);
   const lines  = Object.entries(node).map(([key, value]) => `${makeIndent(depth)}${key}: ${stringify(value, depth + 1)}`);
   return [
     '{',
@@ -20,7 +20,6 @@ const stylish = (data) => {
   const {
   name, value, type, value1, value2, children,
   } = innerData
-    const indent = makeIndent(depth);
         switch (type) {
             case 'root': {
                 const result = children.flatMap((child) => iter(child, depth + 1));
@@ -28,25 +27,25 @@ const stylish = (data) => {
             }
             case 'nested': {
                 const result = children.flatMap((child) => iter(child, depth + 1));
-                return `${indent}  ${name}: {\n${result.join('\n')}\n${indent}}`
+                return `${makeIndent(depth)}  ${name}: {\n${result.join('\n')}\n${makeIndent(depth)}}`
             }
             case 'deleted':
-                return `${indent}- ${name}: ${stringify(value, depth)}`;
+                return `${makeIndent(depth)}- ${name}: ${stringify(value, depth)}`;
             case 'added':
-                return `${indent}+ ${name}: ${stringify(value, depth)}`;
+                return `${makeIndent(depth)}+ ${name}: ${stringify(value, depth)}`;
             case 'unchanged':
-                return `${indent}  ${name}: ${stringify(value, depth)}`;
+                return `${makeIndent(depth)}  ${name}: ${stringify(value, depth)}`;
             case 'changed':
                 return [
-                  `${indent}- ${name}: ${stringify(value1, depth)}`, 
-                  `${indent}+ ${name}: ${stringify(value2, depth)}`
+                  `${makeIndent(depth)}- ${name}: ${stringify(value1, depth)}`, 
+                  `${makeIndent(depth)}+ ${name}: ${stringify(value2, depth)}`
                 ];
             default:
                 throw new Error(`Unknown type!`);
         }
     
       }
-    return iter(data, 1)
+    return iter(data, 0)
 };
 
 export default stylish;
