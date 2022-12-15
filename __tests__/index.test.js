@@ -16,7 +16,7 @@ const correctJson = readFile('jsonResult.json')
 
 test.each(['json', 'yml'])('gendiff %s', (format) => {
   const filepath1 = getFixturePath(`file1.${format}`);
-  const filepath2 = getFixturePath(`file1.${format}`);
+  const filepath2 = getFixturePath(`file2.${format}`);
   expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(correctStylish);
   expect(genDiff(filepath1, filepath2, 'plain')).toEqual(correctPlain);
   expect(genDiff(filepath1, filepath2, 'json')).toEqual(correctJson);
