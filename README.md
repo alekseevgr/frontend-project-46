@@ -42,3 +42,13 @@ Options:
   -f, --format <type>  output format (default: "stylish")
   -h, --help           display help for command
 ```
+
+## Example
+**gendiff help**
+[![asciicast](https://asciinema.org/a/XM0u4xnNzoOUn3yweboyK1iv8.svg)](https://asciinema.org/a/XM0u4xnNzoOUn3yweboyK1iv8)
+**Stylish gendiff json/yaml files**
+[![asciicast](https://asciinema.org/a/qcWmYo0Se8xLD0PMh60Tjowea.svg)](https://asciinema.org/a/qcWmYo0Se8xLD0PMh60Tjowea)
+**Plain gendiff json/yaml files**
+[![asciicast](https://asciinema.org/a/KGUEkwLxz7XD6WMINMeYSxQzg.svg)](https://asciinema.org/a/KGUEkwLxz7XD6WMINMeYSxQzg)
+**Json gendiff json files**
+[![asciicast](https://asciinema.org/a/KE1vTJ9bWDR6BPI9ivfMO59j6.svg)](https://asciinema.org/a/KE1vTJ9bWDR6BPI9ivfMO59j6)
