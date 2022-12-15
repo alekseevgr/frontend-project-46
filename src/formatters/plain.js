@@ -36,7 +36,7 @@ const plain = (diff, fileName = []) => {
             case 'changed':
                 return `Property '${namePath}' was updated. From ${stringify(value1)} to ${stringify(value2)}`
             default:
-                throw new Error(`Unknown type!`);;
+                throw new Error(`Unknown type!`);
         }
 };
 
