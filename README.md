@@ -46,7 +46,7 @@ Options:
 ## Example
 
 **gendiff help**
-[![asciicast](https://asciinema.org/a/XM0u4xnNzoOUn3yweboyK1iv8.svg)](https://asciinema.org/a/XM0u4xnNzoOUn3yweboyK1iv8)
+<script id="asciicast-XM0u4xnNzoOUn3yweboyK1iv8" src="https://asciinema.org/a/XM0u4xnNzoOUn3yweboyK1iv8.js" async></script>
 
 **Stylish gendiff json/yaml files**
 [![asciicast](https://asciinema.org/a/qcWmYo0Se8xLD0PMh60Tjowea.svg)](https://asciinema.org/a/qcWmYo0Se8xLD0PMh60Tjowea)
