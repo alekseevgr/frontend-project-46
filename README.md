@@ -21,6 +21,7 @@ git clone https://github.com/alekseevgr/frontend-project-46.git
  install dependencies
  ```bash
  make install
+ npm link
  ```
 
 ## Run tests
