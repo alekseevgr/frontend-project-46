@@ -16,7 +16,7 @@ Installed Node.js version 13 and above
 
 clone the repository or use 
  ```bash
- git clone git@github.com:alekseevgr/frontend-project-46.git
+git clone https://github.com/alekseevgr/frontend-project-46.git
  ```
  install dependencies
  ```bash
